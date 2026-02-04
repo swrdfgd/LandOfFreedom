@@ -173,6 +173,17 @@
     }
 
     renderRandom();
+	
+
+	 const w = window.screen.width * window.devicePixelRatio;
+	 const h = window.screen.height * window.devicePixelRatio;
+
+	 const imgUrl = `https://picsum.photos/${Math.round(w)}/${Math.round(h)}?random=${Date.now()}.webp`;
+
+	 document.body.style.backgroundImage =
+		`linear-gradient(rgba(15,18,32,0.75), rgba(21,25,58,0.75)), url(${imgUrl})`;
+
+
   </script>
 </body>
 </html>
