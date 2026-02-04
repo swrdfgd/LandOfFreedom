@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Land of Freedom</title>
+  <style>
+    :root {
+      --bg: #0f1220;
+      --card: #1a1f3a;
+      --text: #eaeaf0;
+      --muted: #9aa0c3;
+      --accent: #7c7cff;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0f1220, #15193a);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 2.2rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1.2rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+    }
+
+    .card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .card p {
+      margin-top: 0.4rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    button {
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    button:hover {
+      background: #6666ff;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌍 Land of Freedom</h1>
+    <div id="grid" class="grid"></div>
+
+    
+
+    <footer>
+      Built for curious explorers • Land of Freedom
+    </footer>
+  </div>
+
+  <script>
+    const generators = [
+      ['Random Dailymotion Video', 'https://0xbeef.co.uk/random/dailymotion'],
+      ['Random Snapchat Story', 'https://0xbeef.co.uk/random/snapchat'],
+      ['Random TikTok Video', 'https://0xbeef.co.uk/random/tiktok'],
+      ['Random Twitch VOD', 'https://0xbeef.co.uk/random/twitch-vods'],
+      ['Random Vimeo Video', 'https://0xbeef.co.uk/random/vimeo'],
+      ['Random YouTube Video', 'https://0xbeef.co.uk/random/youtube'],
+      ['Random YouTube Short', 'https://0xbeef.co.uk/random/youtube-shorts'],
+      ['Random Apple Music', 'https://0xbeef.co.uk/random/apple-music'],
+      ['Random Apple Podcast', 'https://0xbeef.co.uk/random/apple-podcasts'],
+      ['Random Deezer Song', 'https://0xbeef.co.uk/random/deezer'],
+      ['Random Radio Station', 'https://0xbeef.co.uk/random/radio'],
+      ['Random Soundcloud Song', 'https://0xbeef.co.uk/random/soundcloud'],
+      ['Random Spotify Song', 'https://0xbeef.co.uk/random/spotify'],
+      ['Random YouTube Music', 'https://0xbeef.co.uk/random/youtube-music'],
+      ['Random Itch.io Game', 'https://0xbeef.co.uk/random/itch-io'],
+      ['Random Scratch Project', 'https://0xbeef.co.uk/random/scratch'],
+      ['Random WordPress Site', 'http://randomwp.com/'],
+      ['Random WordPress Site', 'https://www.wp-viewer.com/'],
+      ['Random Subreddit Generator', 'https://www.randomsub.com/'],
+      ['Random Word Generator', 'https://randomwordgenerator.com/'],
+      ['Random Kanji Generator', 'https://oninohana.com/onh_projects/random-kanji/'],
+      ['Random Bible Verse', 'https://dailyverses.net/random-bible-verse-picture'],
+    ];
+
+    const grid = document.getElementById('grid');
+
+    function shuffle(array) {
+      return array
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+    }
+
+    function renderRandom(count = 6) {
+      grid.innerHTML = '';
+      const picked = shuffle(generators).slice(0, count);
+
+      picked.forEach(([name, link]) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <a href="${link}" target="_blank" rel="noopener">${name}</a>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    renderRandom();
+  </script>
+</body>
+</html>
